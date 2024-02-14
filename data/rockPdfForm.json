@@ -1,0 +1,124 @@
+{
+    "id": 33786,
+    "name": "Rocks  90's",
+    "description": null,
+    "status": "enabled",
+    "category": "",
+    "answer_tracking": true,
+    "bottom_color": null,
+    "public_answers": false,
+    "public_limit": false,
+    "public_answers_limit": null,
+    "success_message": null,
+    "created_at": "2024-02-06T19:54:09+0000",
+    "components": [
+        {
+            "id": "118d19f0-6b1a-4ad6-9706-ed04af2f5e20",
+            "label": "Escolha uma música dos anos 90",
+            "help_block": null,
+            "maximum": 1,
+            "type": "text",
+            "minimum": {
+                "type": "FIXED",
+                "value": 0
+            },
+            "visibility": {
+                "type": "FIXED",
+                "value": true
+            }
+        },
+        {
+            "id": "3cdafb43-8242-480b-a379-fcf2a9c57dcf",
+            "label": "Data de lançamento",
+            "help_block": null,
+            "maximum": 1,
+            "type": "date",
+            "minimum": {
+                "type": "FIXED",
+                "value": 0
+            },
+            "visibility": {
+                "type": "FIXED",
+                "value": true
+            }
+        },
+        {
+            "id": "b4840be2-f3d2-4443-aff6-082f6643a411",
+            "label": "avaliação da música",
+            "help_block": null,
+            "maximum": 1,
+            "type": "rating",
+            "minimum": {
+                "type": "FIXED",
+                "value": 0
+            },
+            "visibility": {
+                "type": "FIXED",
+                "value": true
+            }
+        },
+        {
+            "id": "2c9b1345-d74f-4685-bce6-2030d5492cac",
+            "label": "Capa",
+            "help_block": null,
+            "maximum": null,
+            "type": "gallery",
+            "minimum": {
+                "type": "FIXED",
+                "value": 0
+            },
+            "visibility": {
+                "type": "FIXED",
+                "value": true
+            }
+        },
+        {
+            "id": "daf9db63-68f5-4604-a78c-8d9375d82573",
+            "label": "quanto pagaria para escutar em um show?",
+            "help_block": null,
+            "maximum": 1,
+            "type": "money",
+            "minimum": {
+                "type": "FIXED",
+                "value": 0
+            },
+            "visibility": {
+                "type": "FIXED",
+                "value": true
+            },
+            "currency": "BRL"
+        },
+        {
+            "id": "69494ab9-157d-452d-bc84-8c814b84ac1a",
+            "label": "a musica escolhida te deixa:",
+            "help_block": null,
+            "maximum": null,
+            "type": "checkbox",
+            "minimum": {
+                "type": "FIXED",
+                "value": 0
+            },
+            "visibility": {
+                "type": "FIXED",
+                "value": true
+            },
+            "options": [
+                "Feliz",
+                "Normal",
+                "Triste"
+            ],
+            "widget": "checkbox",
+            "random_order_options": false
+        }
+    ],
+    "created_by": {
+        "id": 1,
+        "name": "Webmaster GeoSapiens (webmaster@geosapiens.com.br)",
+        "email": "sistemateste+1@geosapiens.com.br"
+    },
+    "updated_by": null,
+    "updated_at": null,
+    "top": {
+        "top_color": null
+    }
+}
