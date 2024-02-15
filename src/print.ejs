@@ -30,24 +30,31 @@
 </head>
 <body class="px-16 py-5">
 
-    <% function renderComponents(components) { %>
-  <% let html = ''; %>
-  <% for (let i = 0; i < components.length; i++) { %>
-    <% if (components[i].type === 'group') { %>
-      <tr class="pb-8">
-        <td colspan="3" class="text-xs">
-          <p class="text-5xl">Grupo</p>
-          <% html += renderComponents(components[i].components); %>
-        </td>
-      </tr>
-    <% } else { %>
-      <div><%= components[i].label %></div>
-    <% } %>
-  <% } %>
-  <% return html; %>
-<% } %>
-
-
+    <% function renderComponents(components, isTopLevel = true) { %>
+        <% let html = ''; %>
+        <% if (isTopLevel) { %>
+            <div class="border p-4 mb-4"> <!-- Adiciona a borda para o nível superior -->
+            <p class="text-5xl"><%= components[0].label %></p>
+        <% } %>
+        <% for (let i = 0; i < components.length; i++) { %>
+            <% id = components[i].id %>
+            <div class="border border-black p-4 mb-4"> <!-- Adiciona a borda para cada componente -->
+                <% const currentComponent = components[i]; %>
+                <% const idg = currentComponent.id %>
+            <% if (currentComponent.type === 'group') { %>
+              <p class="text-5xl"><%= currentComponent.label %></p>
+              <p class="text-5xl"><% answer.answer.idg %></p>
+              <% html += renderComponents(currentComponent.components, false); %>
+            <% } else { %>
+              <p><%= currentComponent.label %></p>
+            <% } %>
+          </div>
+        <% } %>
+        <% if (isTopLevel) { %>
+          </div> <!-- Fecha a div do nível superior -->
+        <% } %>
+      <% } %>
+      
     <div>
         <header class="pb-10">
             <div class="flex justify-between">
@@ -63,9 +70,7 @@
             <tbody>
                 <% for(var i=0; i<rock.components.length; i++) { %>
                     <% const id = rock.components[i].id; %>
-                    <% if(rock.components[i].type === 'separator') { %>
-                        
-
+                    <% if(rock.components[i].type === 'separator') { %>                    
                         <td class="text-xs text-center pt-4"><%= rock.components[i].label%>:
                         <tr>
                             <td colspan="3">
@@ -112,11 +117,8 @@
                                         <%= date %>
                                     </td>
                                 </tr>
-
-
-
                                 <%} else if(rock.components[i].type === 'group') { %>
-                                    <%= renderComponents(rock.components) %>
+                                    <%= renderComponents(rock.components[i].components) %>
                             <% } else if(rock.components[i].type === 'agreement') { %>
                                 <tr class="pb-12">
                                  <td class="text-xs w-1/2 align-bottom"><br><%= rock.components[i].label %>:
@@ -140,7 +142,7 @@
                                     </tr>
                     <% } else { %>
                         <tr class="pb-8">
-                            <td class="text-xs w-1/2"><%= rock.components[i].label %>
+                            <td class="text-xs w-1/2 align-top"><%= rock.components[i].label %>
                             <p class="text-gray-700 w-full"><%= rock.components[i].help_block %></p>
                             <td class="text-xs align-top"> <%= answer.answer[id] %></td>
                         </tr>

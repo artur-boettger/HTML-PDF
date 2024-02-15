@@ -19,7 +19,7 @@ const rock = require('../dados/formfull.json');
 app.get('/', (request, response)=> {
     ejs.renderFile(path.join(__dirname, "print.ejs"), { rock, answer, moment}, (err, html) => {
         if(err) {
-            return response.send('Erro')
+            return response.send('erro')
         }
 
         const options = {

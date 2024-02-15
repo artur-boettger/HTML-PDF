@@ -336,8 +336,7 @@
 					"label": "Outro Grupo Aqui",
 					"help_block": null,
 					"maximum": 1,
-					"type": "group",
-					"minimum": {
+					"type": "group",					"minimum": {
 						"type": "FIXED",
 						"value": 0
 					},
@@ -377,11 +376,11 @@
 							}
 						},
 						{
-							"id": "7f939d7e-ed57-439a-989c-f7b1ab0960a2",
-							"label": "Texto",
+							"id": "8ca26cda-ef43-4550-acfc-2bad633a2d2e",
+							"label": "Outro Grupo Aqui",
 							"help_block": null,
 							"maximum": 1,
-							"type": "text",
+							"type": "group",
 							"minimum": {
 								"type": "FIXED",
 								"value": 0
@@ -389,7 +388,54 @@
 							"visibility": {
 								"type": "FIXED",
 								"value": true
-							}
+							},
+							"components": [
+								{
+									"id": "8f2b73d3-43dc-4200-a058-8043f1352b6c",
+									"label": "Texto",
+									"help_block": null,
+									"maximum": 1,
+									"type": "text",
+									"minimum": {
+										"type": "FIXED",
+										"value": 0
+									},
+									"visibility": {
+										"type": "FIXED",
+										"value": true
+									}
+								},
+								{
+									"id": "465c7a75-f1c1-43e7-b52a-2830dd577f19",
+									"label": "Texto",
+									"help_block": null,
+									"maximum": 1,
+									"type": "text",
+									"minimum": {
+										"type": "FIXED",
+										"value": 0
+									},
+									"visibility": {
+										"type": "FIXED",
+										"value": true
+									}
+								},
+								{
+									"id": "7f939d7e-ed57-439a-989c-f7b1ab0960a2",
+									"label": "Texto",
+									"help_block": null,
+									"maximum": 1,
+									"type": "text",
+									"minimum": {
+										"type": "FIXED",
+										"value": 0
+									},
+									"visibility": {
+										"type": "FIXED",
+										"value": true
+									}
+								}
+							]
 						}
 					]
 				}
