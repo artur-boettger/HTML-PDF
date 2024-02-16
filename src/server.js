@@ -6,20 +6,20 @@ const moment = require('moment');
 const app = express()
  
 // const answer = require('../data/answer.json');
-// const rock = require('../data/rockPdfForm.json');
+// const form = require('../data/formPdfForm.json');
 
 
 const answer = require('../dados/answerfull.json');
-const rock = require('../dados/formfull.json');
+const form = require('../dados/formfull.json');
 
 // console.log(answer[0].id)
-// console.log(rock, answer);
+// console.log(form, answer);
 
 
 app.get('/', (request, response)=> {
-    ejs.renderFile(path.join(__dirname, "print.ejs"), { rock, answer, moment}, (err, html) => {
+    ejs.renderFile(path.join(__dirname, "print.ejs"), { form, answer, moment}, (err, html) => {
         if(err) {
-            return response.send('erro')
+            return response.send(err, __dirname)
         }
 
         const options = {

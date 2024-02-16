@@ -28,125 +28,22 @@
     </style>
 
 </head>
-<body class="px-16 py-5">
-
-    <% function renderComponents(components, isTopLevel = true) { %>
-        <% let html = ''; %>
-        <% if (isTopLevel) { %>
-            <div class="border p-4 mb-4"> <!-- Adiciona a borda para o nível superior -->
-            <p class="text-5xl"><%= components[0].label %></p>
-        <% } %>
-        <% for (let i = 0; i < components.length; i++) { %>
-            <% id = components[i].id %>
-            <div class="border border-black p-4 mb-4"> <!-- Adiciona a borda para cada componente -->
-                <% const currentComponent = components[i]; %>
-                <% const idg = currentComponent.id %>
-            <% if (currentComponent.type === 'group') { %>
-              <p class="text-5xl"><%= currentComponent.label %></p>
-              <p class="text-5xl"><% answer.answer.idg %></p>
-              <% html += renderComponents(currentComponent.components, false); %>
-            <% } else { %>
-              <p><%= currentComponent.label %></p>
-            <% } %>
-          </div>
-        <% } %>
-        <% if (isTopLevel) { %>
-          </div> <!-- Fecha a div do nível superior -->
-        <% } %>
-      <% } %>
-      
+<body class="px-16 py-5">  
     <div>
         <header class="pb-10">
             <div class="flex justify-between">
                 <h1 class="text-xl">Geosapiens</h1>
                 <img src="https://i.pinimg.com/originals/66/5f/f3/665ff3116560cbec3c5dc2b031335b85.jpg" alt="" class="w-24 right-0 mr-20 absolute">
             </div>
-            <p class="text-xs w-1/2"><%= rock.name %> - Preenchimento: <%= answer.meta_data.friendly_id  %></p>
+            <p class="text-xs w-1/2"><%= form.name %> - Preenchimento: <%= answer.meta_data.friendly_id  %></p>
             <p class="text-xs w-1/2">Criado por: <%= answer.meta_data.user_name %></p>
             <p class="text-xs">Criado em: <%= moment(answer.meta_data.created_at).format('DD/MM/YYYY'); %></p>
             
         </header>
         <table>
-            <tbody>
-                <% for(var i=0; i<rock.components.length; i++) { %>
-                    <% const id = rock.components[i].id; %>
-                    <% if(rock.components[i].type === 'separator') { %>                    
-                        <td class="text-xs text-center pt-4"><%= rock.components[i].label%>:
-                        <tr>
-                            <td colspan="3">
-                                <div class="w-full pb-4">
-                                    <p class="text-gray-700 text-xs"><%= rock.components[i].help_block %></p>
-                                </div>
-                            </td>
-                        </tr>
-                    <%} else if(rock.components[i].type === 'gallery') { %>
-                        <% const galleryItems = answer.answer[id]; %>
-                        <tr>
-                            <td colspan="3" class="text-xs"><%= rock.components[i].label%>:
-                                <p class="text-gray-700 "><%= rock.components[i].help_block %></p>
-                                <table><tr>
-                                <% for(var j=0; j<galleryItems.length; j++) { %>
-                                    <% if(j > 0 && j % 3 === 0) { %>
-                                        </tr><tr> <% /* Quebra a linha a cada 3 imagens */ %>
-                                    <% } %>
-                                    <td class="w-52 justify-center"><img class="relative w-40" src="<%= galleryItems[j].src %>" alt="Gallery image"></td>
-                                <% } %>
-                                </tr></table>
-                            </td>
-                        </tr>
-                        <% } else if(rock.components[i].type === 'money') { %>
-                            <tr class="pb-8">
-                                <td class="text-xs"><%= rock.components[i].label %>:
-                                    <p class="text-gray-700"><%= rock.components[i].help_block %></p>
-                                <td class="text-xs ml-1.5 align-top">
-                                    <% if(answer.answer[id].currency === 'BRL') { %>
-                                        R$ <%= answer.answer[id].value %>
-                                    <% } else if(answer.answer[id].currency === 'USD') { %>
-                                        $<%= answer.answer[id].value %>
-                                    <% } else if(answer.answer[id].currency === 'EUR') {%>
-                                        €<%= answer.answer[id].value %>
-                                    <% } %>
-                                </td>
-                            </tr>
-                            <% } else if(rock.components[i].type === 'date') { %>
-                                <tr class="pb-8">
-                                    <td class="text-xs w-1/3"><%= rock.components[i].label %>:
-                                        <p class="text-gray-700 w"><%= rock.components[i].help_block %></p>
-                                    <td class="text-xs w-2/3">
-                                        <% var date = moment(answer.answer[id]).format('DD/MM/YYYY'); %>
-                                        <%= date %>
-                                    </td>
-                                </tr>
-                                <%} else if(rock.components[i].type === 'group') { %>
-                                    <%= renderComponents(rock.components[i].components) %>
-                            <% } else if(rock.components[i].type === 'agreement') { %>
-                                <tr class="pb-12">
-                                 <td class="text-xs w-1/2 align-bottom"><br><%= rock.components[i].label %>:
-                                        <td class="text-xs text-gray-700 align-bottom"> <%= rock.components[i].help_block %><p class="text-black" align-bottom><%= answer.answer[id] %></p></td>
-                                </tr>
-                                <% } else if(rock.components[i].type === 'file') { %>
-                                  <tr>
-                                    <td>
-                                        <a href="../report.pdf">
-                                        Baixar documento
-                                    </a>
-                                    </td>
-                                  </tr>
-                            <% } else if(rock.components[i].type === 'coordinate') { %>
-                                <tr class="pb-8">
-                                    <td class="text-xs w-1/3"><%= rock.components[i].label %>:
-                                        <p class="text-gray-700 w"><%= rock.components[i].help_block %></p>
-                                        <td class="text-xs w-2/3">
-                                            <%= answer.answer[id].coordinates %>
-                                        </td>
-                                    </tr>
-                    <% } else { %>
-                        <tr class="pb-8">
-                            <td class="text-xs w-1/2 align-top"><%= rock.components[i].label %>
-                            <p class="text-gray-700 w-full"><%= rock.components[i].help_block %></p>
-                            <td class="text-xs align-top"> <%= answer.answer[id] %></td>
-                        </tr>
-                    <% } %>
+            <% for(var i=0; i<form.components.length; i++) { %>
+                <tbody>
+                    <%- include('../components/function.ejs');  %>
                 <% } %>
             </tbody>
         </table>
