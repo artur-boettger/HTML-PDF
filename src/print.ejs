@@ -41,10 +41,11 @@
             
         </header>
         <table>
+            <tbody>
             <% for(var i=0; i<form.components.length; i++) { %>
-                <tbody>
-                    <%- include('../components/function.ejs');  %>
-                <% } %>
+                <% const id = form.components[i].id; %>
+                <%- include('function.ejs', { form: form.components[i], answer: answer.answer[id] }); %>
+            <% } %>
             </tbody>
         </table>
     </div>
